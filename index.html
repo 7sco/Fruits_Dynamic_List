@@ -1,207 +1,154 @@
-<!-- 
 
-
-<!DOCTYPE html>
 <html>
 <head>
-<title></title><link rel="stylesheet" type="text/css" href="excersise.css"> 
+<title>HTML Layout using Tables</title>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  ></script>
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding:0;
+    	}
 
-<style type="text/css">
-	#box1, #box2{
-border: 1px solid black;
-width: 200px;
-padding: 20px;
-height:	200px;
-margin:20px 20px 20px;
-float:left;
-display:inline-block;
-}
-</style>
+    	h3{
+    		margin-bottom: 10px;
+    		
+    		text-decoration: underline;
+
+    	}
+
+  		body{
+          background:#ccc;  
+          display: flex;
+		  width:600px;
+		  margin:auto;
+		  margin-top:30px;
+        }
+
+        .box{
+        	width: 200px;
+        	border-right: 1px solid black;
+        	height: 200px;
+        	margin: 20px;
+        	padding: 20px;
+        }
+
+        .inner label{
+        	display:block;
+        }
+        
+        .box1{
+            border-right:1px solid black;
+            display: inline-block;
+            width: 400px;
+            height: 200px;
+            margin: 20px;
+            padding-top:20px; 
+        	
+        }
+        
+        .box1 label{
+            display:block;   
+        }
+		#box2{
+		  padding:0;
+		  margin:0;
+		  padding-left:50px;
+		  width: 200px;
+		  margin: 20px;
+        	padding: 20px;
+		}
+
+		.btn{
+			margin-top:10px;
+		}
+    </style>
+   
 </head>
 <body>
 
+	<div class="box">
+	<h3>Enter Fruits</h3>
+		<input class="enteredFruit" type="text" name="" placeholder="Enter Fruit Name">
+		<button class="btn">Enter</button>
+
+		<div class="inner">
+			
+		</div>
 
 
 
+	</div>
 
-<div id="box1">
 
-	<input class="checkbox" type="checkbox">Apple<br>
-	<input  type="checkbox">mango<br>
-	<input  type="checkbox">pear<br>
-	<input type="checkbox">Strawberry<br>
+  <div class="box1">
+  <h3>Choose a Fruit</h3>
+    <label  for=""><input type="checkbox" class="fruits" value="apple"> apple</label>
+    <label for=""> <input type="checkbox" class="fruits" value="pear"> pear</label>
+    <label for=""><input type="checkbox" class="fruits" value="grapes"> grapes</label>
+    <label for=""><input type="checkbox" class="fruits" value="lime"> lime</label>
 
 </div>
 
-<div id="box2">
 
-</div>
+<ul id="box2">
+<h3>FRUITS</h3>
 
+</ul>
 
 <script type="text/javascript">
 	
-var input = document.getElementById("box1");
+	$(document).ready(function(){
 
+		$(".btn").on("click", function(){
+			var enteredFruit = $(".enteredFruit").val();
+			var inner= $(".inner");
 
-
-input.addEventListener("click",action);
-
-
-
-
-
-
-
-
-function action(event){
-var fruit = event.target.nextSibling.data;
-var newBox = document.createElement("li");
-var newList = document.createTextNode(fruit);
-
-if(event.target.checked){
-newBox.appendChild(newList);
-document.getElementById("box2").appendChild(newBox);
-}else{
-var box2 =document.getElementById("box2");
-var fruitlist=box2.childNodes;
-for(var i=0; i < fruitlist.length; i++) {
-console.log(fruitlist[i].innerHTML);
-if(fruitlist[i].innerHTML===fruit){
-box2.removeChild(fruitlist[i]);
-}
-}
-}
-}
-
-
-</script>
-
-<script type="text/javascript" src="excersise3.js"></script>
-</body>
-</html>
-
-
--->
-
-
-
-
-
-
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Fruit Select</title>
-	<style type="text/css" media="screen">
-		#box1 , #box2, #box{
-			border: 1px solid black;
-			width: 200px;
-			padding: 20px;
-			height: 200px;
-			margin: 20px 20px 20px;
-			float: left;
-			display: inline-block;
-		}
-	</style>
-
-
-</head>
-<body>
-	<div id="box">
-		<input type="text" id="enter" />
-		<button type="button" id="btn">click</button> <br/>
-		<div id="content">
-			<input type="checkbox">Mango <br/>
-		</div>
-		
-
-	</div>
-	<div id="box1">
-		<input class="checkbox" type="checkbox" >Apple <br/>
-		<input type="checkbox">Mango <br/>
-		<input type="checkbox">Grapes <br/>
-		<input type="checkbox">Cherry<br/>
-	</div>
-	
-	<div id="box2">
-		
-	</div>
-	
-	<script>
-
-
-
-		var input = document.getElementById("box1");
-		var input1 = document.getElementById("enter");
-		var btn = document.getElementById("btn");
-		var contenido= document.getElementById("content");
-		
-
-
-
-
-		// btn.addEventListener("click", function(){
-		// 	var box = document.createElement("div");
-		// 	var text= document.getElementById("enter").value;
-		// 	// console.log(text);
-		// 	var content =document.createTextNode(text);
-		// 	box.appendChild(content);
-		// 	contenido.appendChild(box);
-		// });
-
-
-
-
-
-
-		input.addEventListener("click",function() {
-			
-
-			var fruitName = event.target.nextSibling.data;  //Gets Clicked Element from Box 1
-			
-
-
-			var newlist = document.createElement("li"); //Creates li element 
-
-
-			var completeListEle = document.createTextNode(fruitName); //makes the checked fruit a text node
-			
-			
-			if(event.target.checked){//if checkbox is checked
-				newlist.appendChild(completeListEle);// put text node created inside li element
-				document.getElementById("box2").appendChild(newlist);//put the li elemnt inside box 2
-			} else {//if box is not checked , runs when we unchecked box 
-				var box2 = document.getElementById("box2");//Brings div with id box 2 inside var box2
-				
-
-				var fruitList = box2.childNodes; //puts unchecked elements inside box2 if any into var fruit list
-				console.log(fruitList); 
-
-
-				for(var i=1; i < fruitList.length; i++) { //will check wich fruit was unchecked, and run depending on how many box  were checked(if all checked wil go through 4 times)
-					
-					console.log(fruitList[i].innerHTML);
-
-					//mango
-					//apple
-					//cherry
-					//grapes 
-					
-					if(fruitList[i].innerHTML === fruitName){//this will copare whic fruit was unchecked so removes from box2
-						box2.removeChild(fruitList[i]);//removes after comparing from box 2
-
-					}
-				}
+			if(enteredFruit == ""){
+				alert("Please Enter text");
 			}
+			else{
+				
+				inner.append("<label><input class='addedFruits' type= 'checkbox' value='"+ enteredFruit+"'>"+enteredFruit+"</input type= 'checkbox'></label>");
+
+				$(".enteredFruit").val(null)
+
+
+				$(".addedFruits").change(function(){
+					var value = $(this).val();
+      				var  list = $(".box1");
+
+      				if (this.checked) {
+       				 list.append("<label data-value='"+value+"'  ><input class='fruits' type='checkbox' data-value='"+value+"'  >"+value+"</input></label>");
+
+				 	}
+    			
+    				else {
+         				list.find('label[data-value="' + value + '"]').remove();
+    				}
+
+				});
+				
+			}
+
 		});
 
-	
-		
+		$(".fruits").change(function() {
+    
+		    	var value = $(this).val();
+		      	var  list = $("#box2");
 
-
-	</script>
-
-
-
+		   		if (this.checked) {
+		        	list.append("<li data-value='" + value + "'>" + value + "</li>");
+		    	}
+		    	
+		    	else {
+		         	list.find('li[data-value="' + value + '"]').remove();
+		    	}
+		});
+	});
+</script>
+    
 </body>
 </html>
